@@ -2,35 +2,37 @@ import cv2
 import numpy as np
 from os import listdir
 from os.path import isfile, join
-print(cv2.__version__)
-# Get the training data we previously made
+
+# enter the name similar to the user's data collected
 NAME = input("enter your name : ")
+
+#the path of user's images directory
 data_path = f'./{NAME}/'
-# a=listdir('d:/faces')
-# print(a)
-# """
+
+#will store individual image name into the list
 onlyfiles = [fi for fi in listdir(data_path) if isfile(join(data_path, fi))]
 
-# Create arrays for training data and labels
+# Create empty arrays for training data and labels
 Training_Data, Labels = [], []
 
-# Open training images in our datapath
-# Create a numpy array for training data
+#filling the above arrays with training data
 for i, files in enumerate(onlyfiles):
-    image_path = data_path + onlyfiles[i]
-    images = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    Training_Data.append(np.asarray(images, dtype=np.uint8))
+    image_path = data_path + onlyfiles[i] #individual image path
+    images = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE) #read the image
+    Training_Data.append(np.asarray(images, dtype=np.uint8)) #convert img to int8 and store into arr
     Labels.append(i)
-# 
-# Create a numpy array for both training data and labels
-Labels = np.asarray(Labels, dtype=np.int32)
-model=cv2.face_LBPHFaceRecognizer.create()
-# Initialize facial recognizer
-# model = cv2.face_LBPHFaceRecognizer.create()
-# model=cv2.f
-# NOTE: For OpenCV 3.0 use cv2.face.createLBPHFaceRecognizer()
 
-# Let's train our model 
-model.train(np.asarray(Training_Data), np.asarray(Labels))
+
+# convert labels into int32
+Labels = np.asarray(Labels, dtype=np.int32)
+
+# Initialize facial recognizer model (empty)
+model=cv2.face.LBPHFaceRecognizer_create()
+
+
+# training the model
+model.train(np.asarray(Training_Data), np.asarray(Labels)) 
 print("Model trained sucessefully ....")
+
+#saving the trained model
 model.save(f'{NAME}ttt.yml')
