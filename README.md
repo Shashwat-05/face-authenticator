@@ -2,7 +2,8 @@
 
 ## About the Project
 
-*An intriguing Python project based not only on face detection but face recognization using OpenCV, Image Processing and Local Binary Patterns Histogram (LBPH).*
+*An intriguing Python project based not only on face detection but face recognization using OpenCV, Image Processing and Local Binary Patterns Histogram (LBPH).
+This Project I re-built during the time college  was encouraging us students to learn and work upon Machine Learning in groups. *
 
 ### Instructions
 
